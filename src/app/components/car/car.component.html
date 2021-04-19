@@ -1,0 +1,102 @@
+<div class="container">
+  <br>
+  <h3><mark>Car:</mark>{{name}}
+    <small>{{model}}</small>
+  </h3>
+  <div class="alert alert-success">
+    Characteristics car:
+    <ul>
+      <li>Speed: <strong>{{ speed }}</strong> km</li>
+      <li>Color car: <strong>{{colors?.car}}</strong></li>
+      <li>Color salon: <strong>{{ colors?.salon }}</strong></li>
+      <li>Color wheels: <strong>{{ colors?.wheels }}</strong></li>
+    </ul>
+  </div>
+
+
+  <h3>Edit object</h3>
+  <button class="btn btn-danger"
+          (click)="showEdit()">Open edit form</button>
+
+
+<!--  <h2>Уроки Angular для начинающих / #6 - Динамическое редактирование</h2>-->
+<!--  <h3>Edit object</h3>-->
+  <form id="edit">
+<!--        *ngIf="isEdit">-->
+    <div class="form-group edit"
+         [ngClass]="isEdit? 'ope': 'clo'">
+      <input type="text" placeholder="Enter name car"
+             [(ngModel)]="name"
+             name="n"
+             class="form-control">
+      <input type="text" placeholder="Enter model car"
+             [(ngModel)]="model"
+             name="m"
+             class="form-control">
+      <input type="number" placeholder="Enter speed"
+             [(ngModel)]="speed"
+             name="s"
+             class="form-control">
+<!--      <input type="text" placeholder="Enter color car"-->
+<!--             id="car"-->
+<!--             [(ngModel)]="alternative.two + ' ' + alternative.one"-->
+<!--             name="car"-->
+<!--             class="form-control">-->
+      <input type="text" placeholder="Enter color salon"
+             id="salon"
+             [(ngModel)]='colors.car'
+             name="salon"
+             class="form-control">
+      <input type="text" placeholder="Enter color wheels"
+             [(ngModel)]="colors.salon"
+             name="cw"
+             class="form-control">
+      <input type="text" placeholder="Enter color wheels"
+             [(ngModel)]="colors.wheels"
+             name="cw"
+             class="form-control">
+    </div>
+  </form>
+
+
+  <h3>All options by car</h3>
+  <form (submit)="addOpt(option.value)">
+    <div class="form-group">
+      <label for="option">Add new option</label>
+      <input type="text"
+             id="option"
+             #option
+             placeholder="Enter some option"
+             class="form-control">
+      <br>
+      <button type="submit"
+              class="btn btn-outline-success">Add option</button>
+    </div>
+  </form>
+
+
+
+<!--  <div class="alert alert-warning">-->
+<!--    {{options}}-->
+<!--  </div>-->
+<!--  <hr>-->
+  <div class="alert alert-warning">
+    <ul>
+      <li *ngFor="let o of options; let i = index">
+        {{i+1}} -- {{o}}
+        <button class="btn btn-danger btn-sm"
+        (click)="deleteOpt(o)">x</button>
+      </li>
+    </ul>
+  </div>
+
+  <h3>Coose your destiny</h3>
+<!--  <button class="btn btn-danger" (click)="bmwSelect()">BMW</button>-->
+<!--  <button class="btn btn-success" (click)="audiSelect()">AUDI</button>-->
+<!--  <button class="btn btn-info" (click)="mersSelect()">Mersedes</button>-->
+  <button class="btn btn-danger" (click)="carSelect('bmw')">BMW</button>
+  <button class="btn btn-success" (click)="carSelect('audi')">AUDI</button>
+  <button class="btn btn-info" (click)="carSelect('tsl')">Tesla</button>
+
+</div>
+
